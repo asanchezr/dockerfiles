@@ -1,0 +1,8 @@
+{
+  "scope": false,
+  "body": true,
+  "emoji": true,
+  "delimiter": ":",
+  "lowercaseTypes": true,
+  "addScopeSpace": true,
+}
