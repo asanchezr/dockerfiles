@@ -1,4 +1,4 @@
-# MailHog 
+# MailHog
 
 Extra small mailhog image.
 
@@ -22,7 +22,10 @@ Built with Go - MailHog runs without installation on multiple platforms.
 ## Usage
 
 ```sh
-docker run -d -p 1025:1025 -p 8025:8025 --name mailhog your_dockerhub_username/mailhog
+# to share a network with other containers/microservices
+docker network create --driver bridge backend
+
+docker run -d -p 1025:1025 -p 8025:8025 --name mailhog --network backend your_dockerhub_username/mailhog
 ```
 
 Link the container to another container and use the mailcatcher SMTP port `1025` via a ENV variable like `$MAILHOG_PORT_1025_TCP_ADDR`.
