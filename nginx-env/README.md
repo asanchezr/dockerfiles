@@ -12,8 +12,9 @@ Nginx image with support for environment variables using [envsubst](https://www.
 
 ```sh
 # to share a network with other containers/microservices
-docker run -p 8080:8080 -e UPSTREAM=mailhog:8025 --rm --name nginx --network bridge -v ./nginx.conf.template:/etc/nginx/nginx.conf.template nginx-env
+docker network create --driver bridge shared
 
+docker run -it -p 8080:8080 -e PROXY_TO=mailhog:8025 --rm --name nginx-env --network shared nginx-env
 ```
 ### Example `nginx.conf.template`
 
@@ -69,7 +70,7 @@ And if you need to understand how the applied configuration looks like you can, 
 docker exec some-nginx cat /etc/nginx/conf.d/default.conf
 ```
 
-### Available environment variables 
+### Available environment variables
 
 Currently, these are the available variables, but they will depend on the tag you use:
 
@@ -121,7 +122,7 @@ services:
      - "8080:8080"
     environment:
        PROXY_TO: "hello_world_app"
-       
+
   hello_world_app:
     image: php:7.3-fpm
     command: |
