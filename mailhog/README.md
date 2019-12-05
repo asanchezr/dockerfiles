@@ -23,9 +23,9 @@ Built with Go - MailHog runs without installation on multiple platforms.
 
 ```sh
 # to share a network with other containers/microservices
-docker network create --driver bridge backend
+docker network create --driver bridge shared
 
-docker run -d -p 1025:1025 -p 8025:8025 --name mailhog --network backend your_dockerhub_username/mailhog
+docker run -it -p 1025:1025 -p 8025:8025 --rm --name mailhog --network shared mailhog
 ```
 
 Link the container to another container and use the mailcatcher SMTP port `1025` via a ENV variable like `$MAILHOG_PORT_1025_TCP_ADDR`.

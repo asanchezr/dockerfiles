@@ -12,9 +12,7 @@ Nginx image with support for environment variables using [envsubst](https://www.
 
 ```sh
 # to share a network with other containers/microservices
-docker network create --driver bridge backend
-
-docker run --rm -p 80:80 -e UPSTREAM=mailhog:8025 --name nginx --network backend -v nginx.tmpl:/etc/nginx/nginx.tmpl your_dockerhub_username/nginx-envsubst
+docker run -p 8080:8080 -e UPSTREAM=mailhog:8025 --rm --name nginx --network bridge -v ./nginx.conf.template:/etc/nginx/nginx.conf.template nginx-env
 
 ```
 ### Example `nginx.conf.template`
@@ -54,7 +52,7 @@ http {
 To change the configuration we use **Environment Variable**
 
 ```sh
-docker run --rm --name some-nginx -p 8080:8080 -e NGINX_HOST=127.0.0.1.xip.io milhomem/nginx
+docker run -it --rm --name some-nginx -p 8080:8080 -e NGINX_HOST=127.0.0.1.xip.io nginx
 ```
 
 Then you can hit `http://127.0.0.1.xip.io:8080` in your browser.
@@ -62,7 +60,7 @@ Then you can hit `http://127.0.0.1.xip.io:8080` in your browser.
 Another example:
 
 ```sh
-docker run --rm --name some-nginx -p 8080:8080 -v /local/src:/var/www -e STATIC_FILES_ROOT=/var/www/public your_dockerhub_username/nginx
+docker run -it --rm --name some-nginx -p 8080:8080 -v /local/src:/var/www -e STATIC_FILES_ROOT=/var/www/public your_dockerhub_username/nginx
 ```
 
 And if you need to understand how the applied configuration looks like you can, in another console, run:

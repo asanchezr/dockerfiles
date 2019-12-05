@@ -10,9 +10,9 @@ Extra small mailcatcher image
 
 ```sh
 # to share a network with other containers/microservices
-docker network create --driver bridge backend
+docker network create --driver bridge shared
 
-docker run -d -p 1080:1080 -p 1025:1025 --name mailcatcher --network backend your_dockerhub_username/mailcatcher
+docker run -it -p 1080:1080 -p 1025:1025 --rm --name mailcatcher --network shared mailcatcher
 ```
 
 Link the container to another container and use the mailcatcher SMTP port `1025` via a ENV variable like `$MAILCATCHER_PORT_1025_TCP_ADDR`.
