@@ -5,7 +5,8 @@ ENV NGINX_PORT=8080 \
     NGINX_HOST=_ \
     PROXY_TO=localhost:8025 \
     DNS_RESOLVER=8.8.8.8 \
-    CLIENT_MAX_BODY_SIZE=1m
+    CLIENT_MAX_BODY_SIZE=1m \
+    STATIC_FILES_ROOT=/usr/share/nginx/html
 
 RUN apk add --no-cache \
     gettext \
