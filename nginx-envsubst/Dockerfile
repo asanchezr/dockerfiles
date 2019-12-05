@@ -1,10 +1,11 @@
 FROM nginx:alpine
 
-ENV LISTEN_PORT=8080
-ENV SERVER_NAME=_
-ENV RESOLVER=8.8.8.8
-ENV UPSTREAM=localhost:8025
-ENV SERVER_EXTRA_CONF=
+# Default values for supported variables
+ENV NGINX_PORT=8080 \
+    NGINX_HOST=_ \
+    PROXY_TO=localhost:8025 \
+    DNS_RESOLVER=8.8.8.8 \
+    CLIENT_MAX_BODY_SIZE=1m
 
 RUN apk add --no-cache \
     gettext \
@@ -12,7 +13,7 @@ RUN apk add --no-cache \
     bash \
     && rm -rf /tmp/* /var/tmp/*
 
-COPY nginx.tmpl /etc/nginx/nginx.tmpl
+COPY nginx.conf.template /etc/nginx/
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat

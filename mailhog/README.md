@@ -36,7 +36,7 @@ Link the container to another container and use the mailcatcher SMTP port `1025`
 
 docker-compose.yml
 
-```
+```yaml
 version: "3"
 services:
   smtp:

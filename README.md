@@ -4,9 +4,10 @@ Collection of lightweight and ready-to-use docker images
 
 ## Images
 
-* **[Node](node/)** - Minimal Node + npm image
-* **[Mailcatcher](mailcatcher/)** - Extra small Mailcatcher image
-* **[MailHog](mailhog/)** - MailHog image (alternative to Mailcatcher)
+* **[nginx-envsubst](nginx-envsubst/)** - Nginx image with support for environment variables using envsubst
+* **[node](node/)** - Minimal Node + npm image
+* **[mailcatcher](mailcatcher/)** - Extra small Mailcatcher image
+* **[mailhog](mailhog/)** - MailHog image (alternative to Mailcatcher)
 
 ## FAQ
 
